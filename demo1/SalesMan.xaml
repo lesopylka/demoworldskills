@@ -1,0 +1,16 @@
+﻿<Window x:Class="demo1.SalesMan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:demo1"
+        mc:Ignorable="d"
+        Title="SalesMan" Height="450" Width="800">
+    <Grid>
+        <Label Content="Имя:" HorizontalAlignment="Left" Margin="265,62,0,0" VerticalAlignment="Top"/>
+        <Label Content="Должность:" HorizontalAlignment="Left" Margin="265,116,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="156" Margin="46,31,0,0" VerticalAlignment="Top" Width="200" Source="/Смирнова.jpeg"/>
+        <Label Content="Продавец" HorizontalAlignment="Left" Margin="344,116,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.295,-0.499"/>
+        <Button Content="Сформировать заказ" HorizontalAlignment="Left" Height="42" Margin="97,276,0,0" VerticalAlignment="Top" Width="149"/>
+    </Grid>
+</Window>

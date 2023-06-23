@@ -1,0 +1,18 @@
+﻿<Window x:Class="demo1.Dil"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:demo1"
+        mc:Ignorable="d"
+        Title="Dil" Height="450" Width="800">
+    <Grid>
+        <Label Content="Сформировать заказ" HorizontalAlignment="Left" VerticalAlignment="Top" Height="62" Width="388" FontSize="36" Margin="80,10,0,0"/>
+        <Label Content="Введите номер заказа" HorizontalAlignment="Left" Margin="121,84,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox ToolTip="Введите номер заказа и нажмите Enter, чтобы сформировать штрих-код" HorizontalAlignment="Left" Height="29" Margin="126,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206">
+        </TextBox>
+        <Button Content="Выбор клиента" HorizontalAlignment="Left" Height="29" Margin="126,312,0,0" VerticalAlignment="Top" Width="136"/>
+        <Button Content="Выбор заказа" HorizontalAlignment="Left" Height="32" Margin="126,359,0,0" VerticalAlignment="Top" Width="136"/>
+
+    </Grid>
+</Window>

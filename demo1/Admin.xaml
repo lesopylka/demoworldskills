@@ -1,0 +1,23 @@
+﻿<Window x:Class="demo1.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:demo1"
+        mc:Ignorable="d"
+        Title="Admin" Height="450" Width="800">
+    <Grid>
+        <TextBlock Name="tbTime" />
+        <Image HorizontalAlignment="Left" Height="156" Margin="46,31,0,0" VerticalAlignment="Top" Width="200" Source="/Смирнова.jpeg"/>
+        <Label Content="Администратор" HorizontalAlignment="Center" Margin="0,116,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.295,-0.499"/>
+        <Label Content="Должность:" HorizontalAlignment="Left" Margin="274,116,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.295,-0.499"/>
+        <Button Content="Сформировать отчет" HorizontalAlignment="Left" Height="42" Margin="97,276,0,0" VerticalAlignment="Top" Width="149"/>
+        <Label Content="Имя:" HorizontalAlignment="Left" Margin="274,80,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.295,-0.499"/>
+        <Button HorizontalAlignment="Left" Height="42" Margin="257,276,0,0" VerticalAlignment="Top" Width="143">
+            <TextBlock Width="138"> Контроль пользователей <LineBreak/> по истории входа</TextBlock>
+        </Button>
+        <Button Content="Данные о расходных материалах" HorizontalAlignment="Left" Height="42" Margin="427,276,0,0" VerticalAlignment="Top" Width="147"/>
+
+
+    </Grid>
+</Window>
