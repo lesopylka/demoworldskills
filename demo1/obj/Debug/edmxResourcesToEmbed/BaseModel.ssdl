@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище demoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Заказы">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Код заказа" Type="nvarchar" MaxLength="255" />
+    <Property Name="Дата создания" Type="float" />
+    <Property Name="Время заказа" Type="float" />
+    <Property Name="Код клиента" Type="int" />
+    <Property Name="Услуги" Type="nvarchar" MaxLength="255" />
+    <Property Name="Статус" Type="nvarchar" MaxLength="255" />
+    <Property Name="Дата закрытия" Type="float" />
+    <Property Name="Время проката" Type="nvarchar" MaxLength="255" />
+    <Property Name="Код сотрудника" Type="int" />
+  </EntityType>
+  <EntityType Name="Клиент">
+    <Key>
+      <PropertyRef Name="Код клиента" />
+    </Key>
+    <Property Name="ФИО" Type="nvarchar" MaxLength="255" />
+    <Property Name="Код клиента" Type="int" Nullable="false" />
+    <Property Name="Паспортные данные" Type="nvarchar" MaxLength="255" />
+    <Property Name="Дата рождения" Type="datetime" />
+    <Property Name="Адрес" Type="nvarchar" MaxLength="255" />
+    <Property Name="e-mail" Type="nvarchar" MaxLength="255" />
+    <Property Name="password" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Сотрудники">
+    <Key>
+      <PropertyRef Name="Код сотрудника" />
+    </Key>
+    <Property Name="Код сотрудника" Type="int" Nullable="false" />
+    <Property Name="Должность" Type="nvarchar" MaxLength="255" />
+    <Property Name="ФИО " Type="nvarchar" MaxLength="255" />
+    <Property Name="Логин " Type="nvarchar" MaxLength="255" />
+    <Property Name="Пароль" Type="nvarchar" MaxLength="255" />
+    <Property Name="Последний вход" Type="nvarchar" MaxLength="255" />
+    <Property Name="Тип входа" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Услуги">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Наименование услуги" Type="nvarchar" MaxLength="255" />
+    <Property Name="Код услуги" Type="nvarchar" MaxLength="255" />
+    <Property Name="Стоимость, руб#  за час " Type="float" />
+  </EntityType>
+  <Association Name="FK_Заказы_Клиент">
+    <End Role="Клиент" Type="Self.Клиент" Multiplicity="0..1" />
+    <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Клиент">
+        <PropertyRef Name="Код клиента" />
+      </Principal>
+      <Dependent Role="Заказы">
+        <PropertyRef Name="Код клиента" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Заказы_Сотрудники">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+    <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="Код сотрудника" />
+      </Principal>
+      <Dependent Role="Заказы">
+        <PropertyRef Name="Код сотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище demoModelContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Заказы" EntityType="Self.Заказы" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Клиент" EntityType="Self.Клиент" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Услуги" EntityType="Self.Услуги" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Заказы_Клиент" Association="Self.FK_Заказы_Клиент">
+      <End Role="Клиент" EntitySet="Клиент" />
+      <End Role="Заказы" EntitySet="Заказы" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Заказы_Сотрудники" Association="Self.FK_Заказы_Сотрудники">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Заказы" EntitySet="Заказы" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

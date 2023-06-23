@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="demoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Заказы">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Код_заказа" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Дата_создания" Type="Double" />
+    <Property Name="Время_заказа" Type="Double" />
+    <Property Name="Код_клиента" Type="Int32" />
+    <Property Name="Услуги" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Статус" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Дата_закрытия" Type="Double" />
+    <Property Name="Время_проката" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Код_сотрудника" Type="Int32" />
+    <NavigationProperty Name="Клиент" Relationship="Self.FK_Заказы_Клиент" FromRole="Заказы" ToRole="Клиент" />
+    <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Заказы_Сотрудники" FromRole="Заказы" ToRole="Сотрудники" />
+  </EntityType>
+  <EntityType Name="Клиент">
+    <Key>
+      <PropertyRef Name="Код_клиента" />
+    </Key>
+    <Property Name="ФИО" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Код_клиента" Type="Int32" Nullable="false" />
+    <Property Name="Паспортные_данные" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Дата_рождения" Type="DateTime" Precision="3" />
+    <Property Name="Адрес" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="e_mail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Заказы" Relationship="Self.FK_Заказы_Клиент" FromRole="Клиент" ToRole="Заказы" />
+  </EntityType>
+  <EntityType Name="Сотрудники">
+    <Key>
+      <PropertyRef Name="Код_сотрудника" />
+    </Key>
+    <Property Name="Код_сотрудника" Type="Int32" Nullable="false" />
+    <Property Name="Должность" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ФИО_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Логин_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Пароль" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Последний_вход" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Тип_входа" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Заказы" Relationship="Self.FK_Заказы_Сотрудники" FromRole="Сотрудники" ToRole="Заказы" />
+  </EntityType>
+  <EntityType Name="Услуги">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Наименование_услуги" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Код_услуги" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Стоимость__руб___за_час_" Type="Double" />
+  </EntityType>
+  <Association Name="FK_Заказы_Клиент">
+    <End Role="Клиент" Type="Self.Клиент" Multiplicity="0..1" />
+    <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Клиент">
+        <PropertyRef Name="Код_клиента" />
+      </Principal>
+      <Dependent Role="Заказы">
+        <PropertyRef Name="Код_клиента" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Заказы_Сотрудники">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+    <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="Код_сотрудника" />
+      </Principal>
+      <Dependent Role="Заказы">
+        <PropertyRef Name="Код_сотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="demoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Заказы" EntityType="Self.Заказы" />
+    <EntitySet Name="Клиент" EntityType="Self.Клиент" />
+    <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+    <EntitySet Name="Услуги" EntityType="Self.Услуги" />
+    <AssociationSet Name="FK_Заказы_Клиент" Association="Self.FK_Заказы_Клиент">
+      <End Role="Клиент" EntitySet="Клиент" />
+      <End Role="Заказы" EntitySet="Заказы" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Заказы_Сотрудники" Association="Self.FK_Заказы_Сотрудники">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Заказы" EntitySet="Заказы" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
